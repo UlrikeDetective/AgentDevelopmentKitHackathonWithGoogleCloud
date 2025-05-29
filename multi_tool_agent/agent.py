@@ -1,6 +1,8 @@
 import datetime
 from zoneinfo import ZoneInfo
 from google.adk.agents import Agent
+import os
+from dotenv import load_dotenv
 
 def get_weather(city: str) -> dict:
     """Retrieves the current weather report for a specified city.
@@ -53,6 +55,11 @@ def get_current_time(city: str) -> dict:
     )
     return {"status": "success", "report": report}
 
+
+# Load environment variables from .env file
+load_dotenv()
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# Now you can use GOOGLE_API_KEY in your code as needed
 
 root_agent = Agent(
     name="weather_time_agent",
